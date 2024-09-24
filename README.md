@@ -10,3 +10,5 @@ script.js: Gets the labels with the ID 'boton' and 'resultado' and when the butt
 
 funciones.js:</br>
   -mostrar(): Obtains the 'name' atribute from the label 'resultado' and changes the text.
+
+login.js:
