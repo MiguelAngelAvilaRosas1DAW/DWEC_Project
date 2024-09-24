@@ -11,4 +11,9 @@ script.js: Gets the labels with the ID 'boton' and 'resultado' and when the butt
 funciones.js:</br>
   -mostrar(): Obtains the 'name' atribute from the label 'resultado' and changes the text.
 
-login.js:
+login.js: With this Script, the user will need to know the right username and password to access the web page successfully.</br>
+In case the user fails to put the right username and password, they will be asked if they want to try it again. Which will restrart the page.</br>
+There are some restrictions that can denie the user and restart the page like:</br>
+-Cancel the registration</br>
+-There are more than 10 characters in the username.</br>
+-There are less than 5 characters in the password.</br>
