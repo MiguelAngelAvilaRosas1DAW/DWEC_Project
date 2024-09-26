@@ -16,6 +16,5 @@ In case the user fails to put the right username and password, they will be aske
 There are some restrictions that can denie the user and restart the page like:</br>
 -Cancel the registration</br>
 -The String of the username or password is empty.</br>
--There are more than 10 characters in the username.</br>
--There are less than 5 characters in the password.</br>
+-There are less than 3 characters in the username.</br>
 -The user says "no" when ask to retry to enter the username and password.</br>
