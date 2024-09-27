@@ -18,3 +18,7 @@ There are some restrictions that can denie the user and restart the page like:</
 -The String of the username or password is empty.</br>
 -There are less than 3 characters in the username.</br>
 -The user says "no" when ask to retry to enter the username and password.</br>
+
+USER: miguel
+
+PASSWORD: elmasalto
