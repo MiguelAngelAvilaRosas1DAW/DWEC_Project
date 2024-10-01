@@ -1,24 +1,88 @@
-<h1>INTRODUCTION</h1>
+<h1>INTRODUCIÓN</h1>
 
-Hello! My name is Miguel Ángel Ávila Rosas, an upcoming programer that is learning a lot of basic program lenguages, such as Java, Python, PHP, HTML, CSS, JavaScript, etc...
-In this section of my Github, you'll learn a FrontEnd project I've been making in DWEC (Development in Client Environment), and how I've been making my way to
-build an entire aplication on my own.
+En este ejercicio forzare al usuario a logearse dentro de mi pagina, utilizando para ello la función prompt, que permitira al usuario introducir un nombre y contraseña que, de ser correcto, le permitira el acceso dentro de la pagina. En el apartado de JavaScript veremos el funcionamiento de estas reglas.
 
-<h2>JavaScript explanation</h2>
+Username: miguel
 
-script.js: Gets the labels with the ID 'boton' and 'resultado' and when the button 'boton' is pressed,calls the function 'mostrar' to change the label with the ID 'resultado'.
+Password: elmasalto
 
-funciones.js:</br>
-  -mostrar(): Obtains the 'name' atribute from the label 'resultado' and changes the text.
+<h1>Apartados de la pagina</h1>
 
-login.js: With this Script, the user will need to know the right username and password to access the web page successfully.</br>
-In case the user fails to put the right username and password, they will be asked if they want to try it again. Which will restrart the page.</br></br>
-There are some restrictions that can denie the user and restart the page like:</br>
--Cancel the registration</br>
--The String of the username or password is empty.</br>
--There are less than 3 characters in the username.</br>
--The user says "no" when ask to retry to enter the username and password.</br>
+<h2>Pagina principal (index)</h2>
 
-USER: miguel
+·HEADER: Indica el nombre de la asignatura, ademas del nombre del ejercicio que se esta realizando.
 
-PASSWORD: elmasalto
+·NAVIGATION BAR: Se muestran diferentes enlaces a paginas de ayuda con HTML, CSS, JS, etc... Ademas tambien incluye el enlace a mi GitHub, en el cual esta el repositorio con el ejercicio actual que este realizando. El nombre del repositorio es: DWEC_Project
+
+·LOGIN:Es lo primero que se muestra al entrar en la pagina, con dos campos para indicar el nombre de usuario y la contraseña, con un boton que manda la respuesta al JS.
+
+·MAIN CONTENT: Incluye cards con enlaces a dos ejercicios, los cuales su funcionamiento se explica mas adelante. Ademas este permanecera oculto hasta el usuario se logue correctamente en la pagina.
+
+·FOOTER:En este pie de pagina se indica el creador de la pagina, ademas de una foto del mismo, para que no haya confusión.
+
+<h2>Ejercicio 1 y 2 (index)</h2>
+
+·MAIN CONTENT: Cambia el mensaje de una card pulsando el boton de la misma, dando un resultado indicado en el JS.
+
+<h2>JAVASCRIPT</h2>
+
+<h3>login</h3>
+
+·Guarda el nombre de usuario y contraseña necesario para entrar:
+    const storedUsername = "miguel";
+    const storedPassword = "elmasalto";
+
+function login (): Realiza varias comprovaciones para dejar al usuario acceder a la pagina, entre ellas:
+
+<!-- Guarda en variables los elementos de login del HTML, para asi utilizarlas para hacer validaciones. -->
+  const loginForm = document.getElementById("loginForm");
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const mainContent = document.getElementById("mainContent");
+  const submitButton = loginForm.querySelector('input[type="submit"]');
+  const loginMessage = document.getElementById("loginMessage");
+
+<!-- Se espera al evento submit manda los resultados dados por el usuario, utilizando event.preventDefault() para que no se recarge la pagina de manera predeterminada y se pueda realizar la comprovación.-->
+  loginForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const usernameValue = username.value;
+    const passwordValue = password.value;
+
+<!-- Examina que el nombre usuario tiene minimamente 3 caracteres, en caso contrario, manda un alert e impide que el usuario pueda mandar esa respuesta. -->
+  if (usernameValue.length < 3) {
+        alert("El nombre de usuario debe tener al menos 3 caracteres.");
+        return;
+  }
+
+<!-- Comprueba si son iguales los valores dados por el usuarios y aquellos dados por la pagina. En caso de ser iguales se indicara un mensaje de bienvenida y 2 segundos mas tarde desaparecera el contenido de la pagina y se remplazara por el MAIN CONTENT. En caso de ser incorrectos los valores, se reiniciara la pagina y se mostrara un mensaje indicando el acceso fallido. -->
+  if (usernameValue === storedUsername && passwordValue === storedPassword) {
+        loginMessage.style.color = "green" ;
+        loginMessage.innerText = "¡Bienvenido!";
+
+        setTimeout(function () {
+            loginForm.style.display = "none";
+            mainContent.style.display = "block";
+            loginMessage.innerText = "";
+        }, 2000);
+    } else {
+        username.disabled = false;
+            password.disabled = false;
+            loginForm.querySelector('input[type="submit"]').disabled = false;
+            loginForm.reset();
+            loginMessage.style.color = "red" ;
+            loginMessage.innerText = "Acceso denegado.";
+    }
+
+<h3>funciones</h3>
+
+·function mostrar(): Coge el id del campo resultado y cambia el contenido que tiene con .innerHTML
+
+<h3>script</h3>
+
+<!-- Coge la id del boton y el texto de resultado que se muestra -->
+  const boton = document.getElementById("boton");
+  const resultado = document.getElementById("resultado");
+
+Cuando se presiona el boton, el click se registra y llama a la función dentro de funciones, pasandole el texto que tiene que remplazar.
