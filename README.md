@@ -4,9 +4,9 @@ En este ejercicio forzare al usuario a logearse dentro de mi pagina, utilizando 
 
 Username: miguel
 
-Password: elmasalto
+password: elmasalto
 
-<h1>Apartados de la pagina</h1>
+<h1>HTML</h1>
 
 <h2>Pagina principal (index)</h2>
 
@@ -24,7 +24,7 @@ Password: elmasalto
 
 ·MAIN CONTENT: Cambia el mensaje de una card pulsando el boton de la misma, dando un resultado indicado en el JS.
 
-<h2>JAVASCRIPT</h2>
+<h1>JAVASCRIPT</h1>
 
 <h3>login</h3>
 
