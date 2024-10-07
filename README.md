@@ -208,6 +208,7 @@ Iremos analizando cada componente en el array, quitandole los espacios en blanco
   Esta funcion nos permitira crear una nueva cookie, pasandole el nombre, el valor, y el tiempo de expiración de la misma en minutos.
 
 Coge la hora actual del sistema y lo pasa a milisegundos, sumandole el tiempo de expiración que se le pase. -->
+
     const date = new Date();
     console.log("Conectado el " + date);
     date.setTime(date.getTime() + (time * 60 * 1000));
