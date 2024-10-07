@@ -68,7 +68,7 @@ Tras realizar la operación, el resultado se imprime por pantalla en le bloque i
 
 function login (): Realiza varias comprovaciones para dejar al usuario acceder a la pagina, entre ellas:
 
-Guarda en variables los elementos de login del HTML, para asi utilizarlas para hacer validaciones. -->
+<!-- Guarda en variables los elementos de login del HTML, para asi utilizarlas para hacer validaciones. -->
   const loginForm = document.getElementById("loginForm");
   const username = document.getElementById("username");
   const password = document.getElementById("password");
@@ -76,7 +76,7 @@ Guarda en variables los elementos de login del HTML, para asi utilizarlas para h
   const submitButton = loginForm.querySelector('input[type="submit"]');
   const loginMessage = document.getElementById("loginMessage");
 
-Función que muestra el contenido principal y oculta el formulario de login -->
+<!-- Función que muestra el contenido principal y oculta el formulario de login -->
 
 function mostrarContenidoPrincipal() {
     loginForm.style.display = "none";
@@ -84,14 +84,14 @@ function mostrarContenidoPrincipal() {
     
 }
 
-Función que muestra el formulario de login y oculta el contenido principal -->
+<!-- Función que muestra el formulario de login y oculta el contenido principal -->
     
 function mostrarLogin() {
     mainContent.style.display = "none";
     loginForm.style.display = "block";
 };
 
-Llama a la función getCookie y para comprobar si sigue existiendo, si si ese es el (), en caso contrario (). -->
+<!-- Llama a la función getCookie y para comprobar si sigue existiendo, si si ese es el (), en caso contrario (). -->
 
 if (getCookie("loggedin") === username.value) {
     mostrarContenidoPrincipal()
@@ -102,7 +102,7 @@ if (getCookie("loggedin") === username.value) {
         console.log("La cookie no existe.");
 
 
-Se espera al evento submit manda los resultados dados por el usuario, utilizando event.preventDefault() para que no se recarge la pagina de manera predeterminada y se pueda realizar la comprovación.-->
+<!-- Se espera al evento submit manda los resultados dados por el usuario, utilizando event.preventDefault() para que no se recarge la pagina de manera predeterminada y se pueda realizar la comprovación.-->
   loginForm.addEventListener("submit", function (event) {
 
     event.preventDefault();
@@ -110,13 +110,13 @@ Se espera al evento submit manda los resultados dados por el usuario, utilizando
     const usernameValue = username.value;
     const passwordValue = password.value;
 
-Examina que el nombre usuario tiene minimamente 3 caracteres, en caso contrario, manda un alert e impide que el usuario pueda mandar esa respuesta. -->
+<!-- Examina que el nombre usuario tiene minimamente 3 caracteres, en caso contrario, manda un alert e impide que el usuario pueda mandar esa respuesta. -->
   if (usernameValue.length < 3) {
         alert("El nombre de usuario debe tener al menos 3 caracteres.");
         return;
   }
 
-Comprueba si son iguales los valores dados por el usuarios y aquellos dados por la pagina. En caso de ser iguales se indicara un mensaje de bienvenida y se guardara, con la funcion setCookie(), la sesion del usuario, para que este pueda seguir logueado en la pagina, sin necesidad de incluir los datos al recargarla. 2 segundos mas tarde (). En caso de ser incorrectos los valores, se reiniciara la pagina y se mostrara un mensaje indicando el acceso fallido. -->
+<!-- Comprueba si son iguales los valores dados por el usuarios y aquellos dados por la pagina. En caso de ser iguales se indicara un mensaje de bienvenida y se guardara, con la funcion setCookie(), la sesion del usuario, para que este pueda seguir logueado en la pagina, sin necesidad de incluir los datos al recargarla. 2 segundos mas tarde (). En caso de ser incorrectos los valores, se reiniciara la pagina y se mostrara un mensaje indicando el acceso fallido. -->
   if (usernameValue === storedUsername && passwordValue === storedPassword) {
         loginMessage.style.color = "green" ;
         loginMessage.innerText = "¡Bienvenido!";
@@ -137,7 +137,7 @@ Comprueba si son iguales los valores dados por el usuarios y aquellos dados por 
             loginMessage.innerText = "Acceso denegado.";
     }
 
-Cuando el usuario decide cerrar sesion usando el boton de LOG OFF, este borrara la cookie utilizando la funcion eraseCookie(), y ademas reiniciara la pagina para que el usuario tenga que volver a iniciar sesion. -->
+  <!-- Cuando el usuario decide cerrar sesion usando el boton de LOG OFF, este borrara la cookie utilizando la funcion eraseCookie(), y ademas reiniciara la pagina para que el usuario tenga que volver a iniciar sesion. -->
   exit.addEventListener("click", function () {
     eraseCookie("loggedin");
     location.reload();
@@ -145,12 +145,12 @@ Cuando el usuario decide cerrar sesion usando el boton de LOG OFF, este borrara 
 
 <h3>mainPage</h3>
 
-Crea constantes de diferentes elementos dentro de la pagina principal -->
+<!-- Crea constantes de diferentes elementos dentro de la pagina principal -->
 const exit = document.getElementById("logOut");
 const ejercicios = document.getElementById("ejercicios");
 const mainContent = document.getElementById("mainContent");
 
-Llama a la función getCookie y le pasa el nombre de la cookie creada en el login, en caso de que la cookie aun exista, mandara un mensaje por la consola indicandolo, y en caso contrario redigira al usuario a la pagina de login para que se vuelva a registrar. -->
+<!-- Llama a la función getCookie y le pasa el nombre de la cookie creada en el login, en caso de que la cookie aun exista, mandara un mensaje por la consola indicandolo, y en caso contrario redigira al usuario a la pagina de login para que se vuelva a registrar. -->
 
 if (getCookie("loggedin") === "true") {
     console.log("La cookie existe.");
@@ -161,7 +161,7 @@ if (getCookie("loggedin") === "true") {
 
 }
 
-Se coge el valor de la opcion elejida en el desplegable, y dependiendo de cual sea, cambia el contenido principal de la pagina por una cart o por otra. -->
+<!-- Se coge el valor de la opcion elejida en el desplegable, y dependiendo de cual sea, cambia el contenido principal de la pagina por una cart o por otra. -->
 
 ejercicios.addEventListener("change", function () {
     const selectedOption = this.value;
@@ -177,7 +177,7 @@ ejercicios.addEventListener("change", function () {
     }
 });
 
-Si el usuario pulsa el boton para salir de la aplicación, se llamara a la funcion eraseCookie para borrar la cookie creada en el login, acto segido se reiniciara la pagina para que al hacer la comprobación de la existencia de la cookie, esta no exista, y mande al usuario a la pagina de login. -->
+<!-- Si el usuario pulsa el boton para salir de la aplicación, se llamara a la funcion eraseCookie para borrar la cookie creada en el login, acto segido se reiniciara la pagina para que al hacer la comprobación de la existencia de la cookie, esta no exista, y mande al usuario a la pagina de login. -->
 
 exit.addEventListener("click", function () {
     eraseCookie("loggedin");
@@ -188,12 +188,12 @@ exit.addEventListener("click", function () {
 
   Esta función nos permitira recorre un Array de todas la cookies del sistema, y comprobar si la cookie creada por el usuario que inicio sesion en la pagina esta entre ellas, devolviendo un valor distinto dependiendo de cada situación.
 
-Declaramos dos constantes, las cuales seran el nombre que tendra la cookie y el array con las diferentes cookies guardadas en la pagina, separadas por ; con la función split()). -->
+  <!-- Declaramos dos constantes, las cuales seran el nombre que tendra la cookie y el array con las diferentes cookies guardadas en la pagina, separadas por ; con la función split()). -->
 
   const nameCookie = name + "=";
   const cookiesArray = document.cookie.split(';');
 
-Iremos analizando cada componente en el array, quitandole los espacios en blanco a cada elemento con la funcion trim(), tras esto utilizaremos la funcion subtring para comprobar el valor de la cookie y ver si esta vacia o no. En caso de existir la cookie, se devolvera el valor true, y en caso contrario, se devolvera null. -->
+  <!-- Iremos analizando cada componente en el array, quitandole los espacios en blanco a cada elemento con la funcion trim(), tras esto utilizaremos la funcion subtring para comprobar el valor de la cookie y ver si esta vacia o no. En caso de existir la cookie, se devolvera el valor true, y en caso contrario, se devolvera null. -->
 
   for(let i = 0; i < cookiesArray.length; i++) {
         let cookie = cookiesArray[i].trim();
@@ -207,18 +207,17 @@ Iremos analizando cada componente en el array, quitandole los espacios en blanco
 
   Esta funcion nos permitira crear una nueva cookie, pasandole el nombre, el valor, y el tiempo de expiración de la misma en minutos.
 
-Coge la hora actual del sistema y lo pasa a milisegundos, sumandole el tiempo de expiración que se le pase. -->
-
+  <!-- Coge la hora actual del sistema y lo pasa a milisegundos, sumandole el tiempo de expiración que se le pase. -->
     const date = new Date();
     console.log("Conectado el " + date);
     date.setTime(date.getTime() + (time * 60 * 1000));
     
-Coge el tiempo de expiración total y lo añade en una variable con el texto que idica la expiración de la cookie. Una vez con todo listo, añade todas las variable y las junta en una sentencia que crea con la cookie con el nombre, valor y fecha de expiración indicada. -->
+  <!-- Coge el tiempo de expiración total y lo añade en una variable con el texto que idica la expiración de la cookie. Una vez con todo listo, añade todas las variable y las junta en una sentencia que crea con la cookie con el nombre, valor y fecha de expiración indicada. -->
 
     const expires = "expires=" + date.toUTCString();
     document.cookie = `${name}=${value};${expires};path=/;SameSite=Strict;Secure`;
 
-Manda mensajes por la consola indicando el tiempo en que se creo la cookie y el nombre y valor de la misma. -->
+  <!-- Manda mensajes por la consola indicando el tiempo en que se creo la cookie y el nombre y valor de la misma. -->
 
     console.log("Cookie creada: " + document.cookie);
     console.log("Duración de la cookie: " + time + " minuto/s.");
@@ -241,7 +240,7 @@ Manda mensajes por la consola indicando el tiempo en que se creo la cookie y el 
 
   -calculator(): Recibe un String con la operación que tenga que realizar, y dependiendo de cual sea realizara un calculo u otro.
 
-Cuando el usurio pulse algun boton para una operación, este llamara al función calculator() y realizara el calculo indicado.-->
+<!-- Cuando el usurio pulse algun boton para una operación, este llamara al función calculator() y realizara el calculo indicado.-->
 
 (operacion).addEventListener("click", function () {
     calculator("(operacion)");
@@ -253,14 +252,13 @@ Cuando el usurio pulse algun boton para una operación, este llamara al función
 
   -converter(): Recibe un String con la operación que tenga que realizar, y dependiendo de cual sea realizara una conversión u otra.
 
-Cuando el usurio pulse algun boton para una conversión, este llamara al función converter() y realizara la conversión indicada.-->
+<!-- Cuando el usurio pulse algun boton para una conversión, este llamara al función converter() y realizara la conversión indicada.-->
 
 (conversor).addEventListener("click", function () {
     calculator("(conversor)");
 });
 
-Coge la id del boton y el texto de resultado que se muestra -->
-
+<!-- Coge la id del boton y el texto de resultado que se muestra -->
   const boton = document.getElementById("boton");
   const resultado = document.getElementById("resultado");
 
