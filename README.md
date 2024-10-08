@@ -111,10 +111,11 @@ if (getCookie("loggedin") === username.value) {
     const passwordValue = password.value;
 
 <!-- Examina que el nombre usuario tiene minimamente 3 caracteres, en caso contrario, manda un alert e impide que el usuario pueda mandar esa respuesta. -->
-  if (usernameValue.length < 3) {
-        alert("El nombre de usuario debe tener al menos 3 caracteres.");
-        return;
-  }
+  const usernameRegex = /^.{3,}$/;
+            if (!usernameRegex.test(usernameValue)) {
+                alert("El nombre de usuario debe tener al menos 3 caracteres.");
+                return;
+            }
 
 <!-- Comprueba si son iguales los valores dados por el usuarios y aquellos dados por la pagina. En caso de ser iguales se indicara un mensaje de bienvenida y se guardara, con la funcion setCookie(), la sesion del usuario, para que este pueda seguir logueado en la pagina, sin necesidad de incluir los datos al recargarla. 2 segundos mas tarde (). En caso de ser incorrectos los valores, se reiniciara la pagina y se mostrara un mensaje indicando el acceso fallido. -->
   if (usernameValue === storedUsername && passwordValue === storedPassword) {
@@ -143,39 +144,48 @@ if (getCookie("loggedin") === username.value) {
     location.reload();
   });
 
-<h3>mainPage</h3>
+<h3>mainFunctions</h3>
 
 <!-- Crea constantes de diferentes elementos dentro de la pagina principal -->
 const exit = document.getElementById("logOut");
 const ejercicios = document.getElementById("ejercicios");
 const mainContent = document.getElementById("mainContent");
 
-<!-- Llama a la función getCookie y le pasa el nombre de la cookie creada en el login, en caso de que la cookie aun exista, mandara un mensaje por la consola indicandolo, y en caso contrario redigira al usuario a la pagina de login para que se vuelva a registrar. -->
+<!-- Con esta función podremos comprobar de forma independiente en cada pagina de la aplicación si la cookie sigue existiendo, llamando a la función getCookie. Ademas con esta tambien podremos cambiar el contenido principal de la pagina, poniendo en su lugar cards con enlaces a los diferentes ejercicios de la pagina, los cuales se iran asignando dependiendo de los valores que se le pasen a la función.-->
 
-if (getCookie("loggedin") === "true") {
-    console.log("La cookie existe.");
+function navbar_functions(link) {
+    if (getCookie("loggedin") === "true") {
+        console.log("La cookie existe.");
+        
+        } else {
+            console.log("La cookie no existe.");
+            window.location.assign(`${link}/index.html`);
     
-    } else {
-        console.log("La cookie no existe.");
-        window.location.assign("index.html");
-
-}
-
-<!-- Se coge el valor de la opcion elejida en el desplegable, y dependiendo de cual sea, cambia el contenido principal de la pagina por una cart o por otra. -->
-
-ejercicios.addEventListener("change", function () {
-    const selectedOption = this.value;
-
-    // Cambiar el contenido del HTML de la sección en función del valor seleccionado
-    switch (selectedOption) {
-        case "miniCalculator":
-            mainContent.innerHTML = '<div class="card"> <h2>Mini Calculadora</h2> <p>Una calculadora para realizar diferentes operaciones aritmaticas.</p> <a href="./ejercicios/ejer01/index.html">Ir</a> </div>';
-            break;
-        case "converter":
-            mainContent.innerHTML = "<div class='card'> <h2>Conversor de bases</h2> <p>Convierte un valor que le pases a binario, octal o hexadecimal.</p> <a href='./ejercicios/ejer02/index.html'>Ir</a> </div>";
-            break;
     }
-});
+    
+    ejercicios.addEventListener("change", function () {
+        const selectedOption = this.value;
+    
+        switch (selectedOption) {
+            case "miniCalculator":
+                mainContent.innerHTML = `
+                <div class="card">
+                    <h2>Mini Calculadora</h2> 
+                    <p>Una calculadora para realizar diferentes operaciones aritmaticas.</p>
+                    <a href="${link}/ejercicios/ejer01/index.html">Ir</a>
+                </div>`;
+                break;
+            case "converter":
+                mainContent.innerHTML = `
+                <div class="card">
+                    <h2>Conversor de bases</h2>
+                    <p>Convierte un valor que le pases a binario, octal o hexadecimal.</p>
+                    <a href="${link}/ejercicios/ejer02/index.html">Ir</a>
+                </div>`;
+                break;
+        }
+    });   
+}
 
 <!-- Si el usuario pulsa el boton para salir de la aplicación, se llamara a la funcion eraseCookie para borrar la cookie creada en el login, acto segido se reiniciara la pagina para que al hacer la comprobación de la existencia de la cookie, esta no exista, y mande al usuario a la pagina de login. -->
 
@@ -183,6 +193,9 @@ exit.addEventListener("click", function () {
     eraseCookie("loggedin");
     location.reload();
 });
+
+<h3>navbarFunctions</h3>
+Esta funcion sirve principalmente para llamar a la función de navbar_functions, asignandole los valores necesarios para que se pueda ejecutar de manera independiente en la pagina principal.
 
 <h3>getCookie</h3>
 
@@ -214,8 +227,8 @@ exit.addEventListener("click", function () {
     
   <!-- Coge el tiempo de expiración total y lo añade en una variable con el texto que idica la expiración de la cookie. Una vez con todo listo, añade todas las variable y las junta en una sentencia que crea con la cookie con el nombre, valor y fecha de expiración indicada. -->
 
-    const expires = "expires=" + date.toUTCString();
-    document.cookie = `${name}=${value};${expires};path=/;SameSite=Strict;Secure`;
+    const expires = date.toUTCString();
+    document.cookie = name + "=" + value + "; expires=" + expires + ";path=/;SameSite=Strict;Secure";
 
   <!-- Manda mensajes por la consola indicando el tiempo en que se creo la cookie y el nombre y valor de la misma. -->
 
@@ -240,6 +253,10 @@ exit.addEventListener("click", function () {
 
   -calculator(): Recibe un String con la operación que tenga que realizar, y dependiendo de cual sea realizara un calculo u otro.
 
+<!-- Llama a la función navbar_functions para revisar el estado de la cookie y cambiar el contenido de la pagina principla. -->
+
+navbar_functions("../../") ;
+
 <!-- Cuando el usurio pulse algun boton para una operación, este llamara al función calculator() y realizara el calculo indicado.-->
 
 (operacion).addEventListener("click", function () {
@@ -251,6 +268,10 @@ exit.addEventListener("click", function () {
 ·Funciones:
 
   -converter(): Recibe un String con la operación que tenga que realizar, y dependiendo de cual sea realizara una conversión u otra.
+
+<!-- Llama a la función navbar_functions para revisar el estado de la cookie y cambiar el contenido de la pagina principla. -->
+
+navbar_functions("../../") ;
 
 <!-- Cuando el usurio pulse algun boton para una conversión, este llamara al función converter() y realizara la conversión indicada.-->
 
