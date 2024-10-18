@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link href="../../img/favicon.ico" rel="icon" type="image/x- icon">
+    <link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
+
+    <script defer src="../../js/deleteLocalStorage.js" type="text/javascript"></script>
+    <script defer src="../../js/mainFunctions.js" type="text/javascript"></script>
+    <script defer src="./js/conversorDeBases.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <!--HEADER-->
+    <div id="header">
+        <h1>Desarrollo WEB en entorno cliente</h1>
+        <h2>Conversor de bases</h2>
+    </div>
+
+    <!--NAVIGATION BAR-->
+    <div id="navigationBar" class="grid4">
+        <a href="https://www.w3schools.com/js/default.asp" target="_blank">W3schools</a>
+        <a href="https://es.javascript.info/js" target="_blank">Info JavaScript</a>
+        <a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank">MDN</a>
+        <a href="https://github.com/MiguelAngelAvilaRosas1DAW/DWEC_Project" target="_blank">Github</a>
+    </div>
+    <div id="ejerciciosTotales" class="grid2">
+        <select name="number" class="ejercicios">
+            <option selected>NUMBER</option>
+            <option id="miniCalculator" value="miniCalculator">Mini calculadora</option>
+            <option id="converter" value="converter">Conversor de bases</option>
+        </select>
+        <select name="string" class="ejercicios">
+            <option selected>STRING</option>
+            <option id="textTransformator" value="textTransformator">Transformador de texto</option>
+        </select>
+    </div>
+    <button id="logOut">LOG OUT</button>
+
+    <!--CARD-->
+<div id="mainContent">
+    <div class="card">
+        <h1>Conversor de bases</h1>
+        <h2>Conversor de decimal a bases</h2>
+        <input id="value1" class="values" type="text" value="">
+        <div id="converterList">
+            <input id="binario" class="converter" type="submit" value="/2">
+            <input id="octal" class="converter" type="submit" value="/8">
+            <input id="hexadecimal" class="converter" type="submit" value="/16">
+            <input id="alfanumerico" class="converter" type="submit" value="/36">
+        </div>
+        <p>Resultado:</p>
+            <input id="result" class="values" disabled type="text" value="">
+        <a href="../../mainPage.html">Pagina principal</a>
+    </div>
+</div>
+
+    <!--FOOTER-->
+    <div id="footer" class="grid2">
+        <h2>Hecho por Miguel Ángel Ávila Rosas</h2>
+        <img id="caraFooter" src="../../img/ImagenCara.png" alt="Miguel Ángel Ávila Rosas, creador de la pagina.">
+    </div>
+</body>
+</html>
