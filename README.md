@@ -109,7 +109,7 @@ Ademas es aprueba de errores, dando alertas en caso de que el usuario no introdu
 
 En caso de que llege a poner decimales, el progrmas redondeara el input y mostrara el resultado correctamente.
 
-<h2>Ejercicio 5 (Almacenamientos)</h2>
+<h2>Ejercicio 5 (Almacenamiento)</h2>
 
 ·MAIN CONTENT: Este apartado permitira al usuario guardar claves y valores de tres formas distintas: Por cookies (cookies.html), por localStorage (localStorage.html) y por IndexedDB (indexedDB.html). Cada una te dara la opción de borrar y actualizar los valores de los datos, ademas de una funcion adicional para cargar de una API valores aleatorios los cuales crearan nuevos registros.
 
