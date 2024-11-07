@@ -12,12 +12,13 @@
 
     <script src="../../js/indexedDB.js" type="text/javascript"></script>
     <script defer src="../../js/deleteIndexedDB.js" type="text/javascript"></script>
-    <script defer src="./js/rellenarMatriz.js" type="text/javascript"></script>
-    <script defer src="./js/crearMatriz.js" type="text/javascript"></script>
-    <script defer src="./js/ecuacionesMatrices.js" type="text/javascript"></script>
-    <script defer src="./js/mostrarMatriz.js" type="text/javascript"></script>
+    <script defer src="./js/actualizarDatos.js" type="text/javascript"></script>
+    <script defer src="./js/borrarDato.js" type="text/javascript"></script>
+    <script defer src="./js/grabarDato.js" type="text/javascript"></script>
+    <script defer src="./js/mostrarDatos.js" type="text/javascript"></script>
+    <script defer src="./js/cargarDatos.js" type="text/javascript"></script>
     <script defer src="../../js/mainFunctions.js" type="text/javascript"></script>
-    <script defer src="./js/generadorMatrices.js" type="text/javascript"></script>
+    <script defer src="./js/scriptLocalStorage.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -61,56 +62,50 @@
     <!--CARD-->
 
     <div id="mainContent">
-        
         <div class="card">
             <div class="boxContent">
-                <h1>Operaciones con matrices</h1>
-                <h3>Rangos:</h3>
-                <p>Dimension cuadrada de las matrices: </p>
-                <input type="number" name="matrizDimensions" id="matrizDimensions">
-                <div class="grid2">
-                    <div>
-                        <p>Rango inferior:</p>
-                        <input type="number" name="lowerRange" id="lowerRange">
-                    </div>
-                    <div>
-                        <p>Rango superior:</p>
-                        <input type="number" name="superiorRange" id="superiorRange">
-                    </div>
-                </div>
-                <div class="grid2">
-                    <div>
-                        <input class="buttonInput" type="button" name="valoresAleatorios" id="valoresAleatorios"
-                            value="Valores aleatorios">
-                    </div>
-                    <div>
-                        <input class="buttonInput" type="button" name="generarMatrices" id="generarMatrices"
-                            value="GenerarMatrices">
-                    </div>
-                </div>
-                        <h4>Matriz A:</h4>
-                        <p id="matrizA"></p>
-
-                        <h4>Matriz B:</h4>
-                        <p id="matrizB"></p>
-            </div>
-            <div class="boxContent">
-                <h3>Testeo:</h3>
-                <button class="modifiers" id="random">Aleatorio</button>
-                <button class="modifiers" id="stop">Parar</button>
-                <button class="modifiers" id="fast">Rapido</button>
-                <button class="modifiers" id="slow">Lento</button>
-            </div>
-            <div class="boxContent">
-                <h3>Operaciones:</h3>
-                <button id="plus">+</button>
-                <button id="minus">-</button>
-                <button id="multiply">*</button>
-            </div>
-            <div class="boxContent">
-                <h3>Resultado:</h3>
-                <h4>Matriz Resultado:</h4>
-                <p id="matrizR"></p>
+                <h1>Almacenamiento con Local Storage</h1>
+                <table id="tabla" class="filas">
+                    <thead>
+                        <tr>
+                            <th><label name="labelNombre" for="nombre">Introduce un nombre</label></th>
+                            <th><label name="labelValor" for="valor">Introduce un valor</label></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="text" id="nombre" class="control" name="nombre" size="20"
+                                    placeholder="Escribe un nombre..." required />
+                            </th>
+                            <th>
+                                <input type="text" id="valor" class="control" name="valor" size="20"
+                                    placeholder="Escribe un valor..." required />
+                            </th>
+                            <th>
+                                <button type="submit" id="guardar"> <div class="buttonText">Guardar</div>
+                                    <img src="../../img/save.svg" alt="Guardar" alt="Grabar dato"
+                                        style="vertical-align: middle" />
+                                </button>
+                                <button type="submit" class="api" id="cargarApi"> <div class="buttonText">Cargar 1 API</div>
+                                    <img src="../../img/uploadarrow_87531.png" alt="Cargar API"
+                                        style="vertical-align: middle" />
+                                </button>
+                                <button type="submit" class="api" id="cargarApi5"> <div class="buttonText">Cargar 5 API's</div>
+                                    <img src="../../img/uploadarrow_87531.png" alt="Cargar API x5"
+                                        style="vertical-align: middle" />
+                                        <div class="buttonMiniText">x5</div>
+                                </button>
+                            </th>
+                            <th>
+                                
+                            </th>
+                            <th>
+                                
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo">
+                    </tbody>
+                </table>
             </div>
             <a href="../../mainPage.html">Pagina principal</a>
         </div>

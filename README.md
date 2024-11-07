@@ -109,6 +109,10 @@ Ademas es aprueba de errores, dando alertas en caso de que el usuario no introdu
 
 En caso de que llege a poner decimales, el progrmas redondeara el input y mostrara el resultado correctamente.
 
+<h2>Ejercicio 5 (Almacenamientos)</h2>
+
+·MAIN CONTENT: Este apartado permitira al usuario guardar claves y valores de tres formas distintas: Por cookies (cookies.html), por localStorage (localStorage.html) y por IndexedDB (indexedDB.html). Cada una te dara la opción de borrar y actualizar los valores de los datos, ademas de una funcion adicional para cargar de una API valores aleatorios los cuales crearan nuevos registros.
+
 <h1>JAVASCRIPT</h1>
 
 <h3>login</h3>
@@ -722,3 +726,274 @@ generarMatrices.addEventListener("click", function () {
     }
 
 });
+
+<h3>scriptCookies y scriptLocalStorage</h3>
+
+Estos scripts registran el contenido de su html y generan funciones para cada boton de interaccion del usuario, creando ademas un array para guardar el contenido que se almacene -->
+
+let datosAcceso = []; // 'array' dónde almaceno los valos de nombre y clave
+
+if (navigator.cookieEnabled == true) { // comprueba que el navegador sea compatible
+    const nombre = document.getElementById("nombre"); // accedo al valor del input para el nombre
+    const valor = document.getElementById("valor"); // accedo al valor del input para la clave
+
+    const grabar = document.getElementById("guardar");
+    const cargar = document.getElementById("cargarApi");
+    const cargar5 = document.getElementById("cargarApi5");
+
+    mostrarDatos(); // muestro el contenido de las 'cookies'
+    grabar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+        await grabarDato(nombre.value, valor.value); // grabo una 'cookie'
+    });
+    cargar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+        await cargarDatos(); // cargo una API
+    });
+    cargar5.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+        for (let index = 0; index < 5; index++) {
+            await cargarDatos(); // cargo una API
+        }
+    });
+
+} else {
+    alert("El uso de cookies está desactivado");
+}
+
+<h3>scriptIndexedDb</h3>
+
+IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base de datos utilizando los comandos necesarios de la misma para funcionar.
+
+    let datos = [];
+    let solicitudDB,
+        bd,
+        canalBD;
+    let nombreBD = "DATOS";
+    let versionBD = 1;
+    let tablaBD = "datos";
+    solicitudDB = indexedDB.open(nombreBD, versionBD); 
+    solicitudDB.onerror = function (event) {
+        console.error(`IndexedDB error: ${event.target.errorCode}`); 
+    };
+    solicitudDB.onsuccess = function (event) { 
+        console.info('Conexión satisfactoria'); 
+        bd = event.target.result; 
+    };
+    solicitudDB.onupgradeneeded = function (event) { 
+        console.info('Base de datos creada'); 
+        bd = event.target.result; 
+        let registros = bd.createObjectStore(tablaBD, { keyPath: "id", autoIncrement: true }); 
+        registros.createIndex("nombre", "nombre", { unique: false }); // CREAMOS UN CAMPO 'nombre'
+        registros.createIndex("edad", "edad", { unique: false }); // CREAMOS UN CAMPO 'clave'
+
+        registros.oncompleted = function (event) {
+            console.info('Almacen de datos creado');
+        }
+    };
+
+    mostrarDatos("indexedDb"); // MUESTRO LOS DATOS
+    // DATOS
+    const nombre = document.getElementById("nombre");
+    const edad = document.getElementById("edad");
+    // GUARDAR
+    const guardar = document.getElementById("guardar");
+    const cargar = document.getElementById("cargarApi");
+    const cargar5 = document.getElementById("cargarApi5");
+
+    guardar.addEventListener("click", function () {
+        grabarDato(nombre.value, edad.value, "indexedDb");
+    });
+
+    cargar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+        await cargarDatos("indexedDb"); // cargo una API
+    });
+    cargar5.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+        for (let index = 0; index < 5; index++) {
+            await cargarDatos("indexedDb"); // cargo una API
+        }
+    });
+
+<h3>grabarDato</h3>
+
+    Esta funcion utiliza un switch para elegir entre la grabación de los datos por IndexedDb, localStorage o cookies, utilizando cada una sus funcionalidades para ello:
+
+<h4>Cookies (Creando una nueva cookie con sus parametros)</h4>
+
+            let caducidadCookie = 1 * 60 * 1000; // caducidad por defecto, 1 minutos
+
+            let theDate = new Date(); // obtengo la fecha actual
+            let currentMiliseconds = theDate.getTime(); // obtengo la fecha actual en milisegundos
+            let expirationMiliseconds = currentMiliseconds + caducidadCookie; // añado la caducidad en milisegundos
+            theDate.setTime(expirationMiliseconds); // actualizo la fecha (ahora con el incremento de la caducidad)
+            console.log(`Fecha caducidad: ${theDate}`);
+
+            // creo la 'cookie' con los atributos correspondientes
+            document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + ";expires=" + theDate.toUTCString() + ";path=./;SameSite=Strict;Secure";
+            mostrarDatos("cookie");
+            break;
+
+<h4>LocalStorage (Introduciendo nuevos parametros al array)</h4>
+
+            datosAcceso.push({
+                nombre: name,
+                valor: value
+            }); // introduzco los datos: nombre y clave, en el 'array'
+
+            // guardo los datos del 'array' convirtiendolos en JSON en una variable localStorage llamada 'acceso'
+            localStorage.setItem("localAcceso", JSON.stringify(datosAcceso));
+            mostrarDatos("localStorage");
+            break;
+
+<h4>IndexedDB (Abriendo la base de datos e introduciendo nuevos valores a la misma)</h4>
+
+            solicitudDB = indexedDB.open(nombreBD, versionBD);
+            solicitudDB.onerror = function (event) {
+                console.error(`IndexedDB error: ${event.target.errorCode}`);
+            };
+            solicitudDB.onsuccess = function (event) {
+                bd = event.target.result;
+                canalBD = bd.transaction(tablaBD, "readwrite").objectStore(tablaBD);
+                canalBD.put({ nombre: name, edad: value }); // Almacena los valores obtenidos de los campos de entrada
+                mostrarDatos("indexedDb");
+            };
+            break;
+
+<h3>borrarDato</h3>
+
+    Esta funcion utiliza un switch para elegir entre el borrado de los datos por IndexedDb, localStorage o cookies, utilizando cada una sus funcionalidades para ello:
+
+<h4>Cookies (Cambiando la caducidad de la cookie para que deje de existir)</h4>
+
+            let caducidadCookie = 1 * 60 * 1000;
+
+            let theDate = new Date();
+            let currentMiliseconds = theDate.getTime();
+            let expirationMiliseconds = currentMiliseconds - caducidadCookie;
+            theDate.setTime(expirationMiliseconds);
+            console.log(`Fecha caducidad: ${theDate}`);
+
+            document.cookie = nombre + "=;expires=" + theDate.toUTCString() + ";path=./;SameSite=Strict;Secure";
+
+            mostrarDatos("cookie");
+
+<h4>LocalStorage (Creando un nuevo array con los nuevos datos, sustituyendo a los antiguos)</h4>
+
+    let newDatosAcceso = [];
+            let cont = 0;
+
+            datosAcceso = JSON.parse(localStorage.getItem("localAcceso")); // guardo el JSON de la variable localStorage 'acceso' en el array 'datosAcceso'
+            for (let i = 0; i < datosAcceso.length; i++) {
+                if (!(datosAcceso[i].nombre == nombre)) { // recorro el 'array' hasta encontrar el dato que busco
+                    newDatosAcceso[cont] = datosAcceso[i];
+                    cont++;
+                }
+            }
+            datosAcceso = [...newDatosAcceso]; // 'spread' the array (clonar el array)
+            // guardo los datos del 'array' convirtiendolos en JSON en una variable localStorage llamada 'acceso'
+            localStorage.setItem("localAcceso", JSON.stringify(datosAcceso));
+            break;
+
+<h4>IndexedDB (Abriendo la base de datos y utilizando el parametro .delete para borrar el dato especifico)</h4>
+
+    solicitudDB = indexedDB.open(nombreBD, versionBD);
+            solicitudDB.onerror = function (event) {
+                console.error(`IndexedDB error: ${event.target.errorCode}`);
+            };
+            solicitudDB.onsuccess = function (event) {
+                bd = event.target.result;
+                canalBD = bd.transaction(tablaBD, "readwrite").objectStore(tablaBD);
+                canalBD.delete(nombre);
+            };
+            mostrarDatos("indexedDb");
+
+<h3>cargarDatos</h3>
+
+Carga una API con valores aleatorios y graba los resultados con Cookies, localStorage o IndexedDB dependiendo del parametro que se le mande -->
+
+const url = 'https://random-words5.p.rapidapi.com/getMultipleRandom?count=5';
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '34c648cd53mshfefe2e6b222822bp143450jsn128912a7654e',
+            'x-rapidapi-host': 'random-words5.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
+        console.log(response);
+        const data = await response.json();
+        console.log(data);
+        let randomIndex = Math.floor(Math.random() * 4);
+        let nombreCargado = `${data[randomIndex]}`;
+        randomIndex = Math.floor(Math.random() * 4);
+        let valorCargado = `${data[randomIndex]}`;
+
+        switch (tipo) {
+            case "cookie":
+                await grabarDato(nombreCargado, valorCargado, "cookie");
+            break;
+        
+            case "localStorage":
+                await grabarDato(nombreCargado, valorCargado, "localStorage");
+            break;
+
+            case "indexedDb":
+                await grabarDato(nombreCargado, valorCargado, "indexedDb");
+            break;
+
+        }
+        
+    } catch (error) {
+        console.error(error);
+    }
+
+<h3>mostrarDatos</h3>
+
+Este script se divide en tres secciones separadas por un switch, cada caso se realizara en caso de que se quiera realizar con cookies, localStorage o indexedDB.
+
+En todos los casos se crea una tabla con una seccion para la clave y otra para el valor, junto a 2 botones para borrar o actualizar los valores-->
+
+    let linea = document.createElement("tr"), // creo una fila
+    campoNombre = document.createElement("td"), // creo una celda para el nombre
+    campoValor = document.createElement("td"), // creo una celda para la clave
+    campoBorrar = document.createElement("td"), // creo una celda para el botón 'borrar'
+    campoActualizar = document.createElement("td"), // creo una celda para el botón 'actualizar'
+
+    botonBorrar = document.createElement("button"), // creo un botón type="button"
+    imagenBorrar = document.createElement("img"), // creo una imagen
+    botonActualizar = document.createElement("button"), // creo un botón type="button"
+    imagenActualizar = document.createElement("img"); // creo una imagen
+
+Y dependiendo de cada caso, tendra una forma distinta de borrar o actualizar la cookie, sin embargo el codigo es muy similar, excepto por indexedDB, que se mandan los parametros de forma distinta en el borrar y actualizar.
+
+<h4>Cookies y localStorage</h4>
+
+botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                        borrarDato(datoAcceso.nombre, "localStorage"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
+                        mostrarDatos("localStorage");
+                    });
+
+botonActualizar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                        borrarDato(datoAcceso.nombre, "localStorage");
+                        datoAcceso.nombre = document.getElementById("nombre").value;
+                        console.log(datoAcceso[0]);
+                        datoAcceso.valor = document.getElementById("valor").value;
+                        console.log(datoAcceso[1]);
+                        actualizar.click();
+                    });
+
+<h4>IndexedDB</h4>
+
+botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                            borrarDato(registro.id, "indexedDb"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
+                        });
+
+botonActualizar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                            borrarDato(registro.id, "indexedDb");
+                            registro.nombre = document.getElementById("nombre").value;
+                            registro.edad = document.getElementById("edad").value;
+                            actualizar.click();
+                        });

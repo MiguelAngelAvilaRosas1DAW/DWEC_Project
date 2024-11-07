@@ -10,17 +10,17 @@ function navbar_functions(link) {
 
     exit.addEventListener("click", function () {
         const tryAgain = confirm("¿Quieres cerrar sesión?");
-            if (tryAgain) {
-                
-                deleteIndexedDB("loggedIn");
-                
-                setTimeout(function () {
-                    window.location.href = `${link}index.html`;
-                }, 2000);
-            }
-            
+        if (tryAgain) {
+
+            deleteIndexedDB("loggedIn");
+
+            setTimeout(function () {
+                window.location.href = `${link}index.html`;
+            }, 2000);
+        }
+
     });
-    
+
     console.log(ejercicios);
 
     Array.from(ejercicios).forEach(ejercicio => {
@@ -59,6 +59,30 @@ function navbar_functions(link) {
                         <p>Genera una matriz y realiza operaciones con el resultado.</p>
                         <a href="${link}/ejercicios/ejer04/index.html">Ir</a>
                     </div>`;
+                    break;
+                case "almacenamientoCookie":
+                    mainContent.innerHTML = `
+                    <div class="card">
+                        <h2>Almacenamiento con Cookies</h2>
+                        <p>Almacena una tabla con datos de una API utilizando cookies.</p>
+                        <a href="${link}/ejercicios/ejer05/cookie.html">Ir</a>
+                    </div>`;
+                    break;
+                case "almacenamientoLocalStorage":
+                    mainContent.innerHTML = `
+                        <div class="card">
+                            <h2>Almacenamiento con LocalStorage</h2>
+                            <p>Almacena una tabla con datos de una API utilizando localStorage.</p>
+                            <a href="${link}/ejercicios/ejer05/localStorage.html">Ir</a>
+                        </div>`;
+                    break;
+                case "almacenamientoIndexedDb":
+                    mainContent.innerHTML = `
+                            <div class="card">
+                                <h2>Almacenamiento con IndexedDB</h2>
+                                <p>Almacena una tabla con datos de una API utilizando indexedDB</p>
+                                <a href="${link}/ejercicios/ejer05/indexedDB.html">Ir</a>
+                            </div>`;
                     break;
             }
         });
