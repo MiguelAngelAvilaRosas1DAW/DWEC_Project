@@ -22,15 +22,14 @@ function borrarDato(nombre, tipo) {
             let newDatosAcceso = [];
             let cont = 0;
 
-            datosAcceso = JSON.parse(localStorage.getItem("localAcceso")); // guardo el JSON de la variable localStorage 'acceso' en el array 'datosAcceso'
+            datosAcceso = JSON.parse(localStorage.getItem("localAcceso"));
             for (let i = 0; i < datosAcceso.length; i++) {
-                if (!(datosAcceso[i].nombre == nombre)) { // recorro el 'array' hasta encontrar el dato que busco
+                if (!(datosAcceso[i].nombre == nombre)) {
                     newDatosAcceso[cont] = datosAcceso[i];
                     cont++;
                 }
             }
-            datosAcceso = [...newDatosAcceso]; // 'spread' the array (clonar el array)
-            // guardo los datos del 'array' convirtiendolos en JSON en una variable localStorage llamada 'acceso'
+            datosAcceso = [...newDatosAcceso];
             localStorage.setItem("localAcceso", JSON.stringify(datosAcceso));
             break;
 

@@ -70,6 +70,7 @@
                         <tr>
                             <th><label name="labelNombre" for="nombre">Introduce un nombre</label></th>
                             <th><label name="labelValor" for="valor">Introduce un valor</label></th>
+                            <th><label name="labelValor" for="extra">Introduce una imagen</label></th>
                         </tr>
                         <tr>
                             <th>
@@ -81,8 +82,12 @@
                                     placeholder="Escribe un valor..." required />
                             </th>
                             <th>
+                                <input type="text" id="extra" class="control" name="extra" size="20"
+                                    placeholder="Escribe una url..." required />
+                            </th>
+                            <th>
                                 <button type="submit" id="guardar"> <div class="buttonText">Guardar</div>
-                                    <img src="../../img/save.svg" alt="Guardar" alt="Grabar dato"
+                                    <img src="../../img/save.svg" id="guardar" alt="Grabar datos"
                                         style="vertical-align: middle" />
                                 </button>
                                 <button type="submit" class="api" id="cargarApi"> <div class="buttonText">Cargar 1 API</div>

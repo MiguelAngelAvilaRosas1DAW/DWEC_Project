@@ -21,32 +21,34 @@ solicitudDB.onupgradeneeded = function (event) {
     console.info('Base de datos creada'); 
     bd = event.target.result; 
     let registros = bd.createObjectStore(tablaBD, { keyPath: "id", autoIncrement: true }); 
-    registros.createIndex("nombre", "nombre", { unique: false }); // CREAMOS UN CAMPO 'nombre'
-    registros.createIndex("edad", "edad", { unique: false }); // CREAMOS UN CAMPO 'clave'
+    registros.createIndex("nombre", "nombre", { unique: false });
+    registros.createIndex("edad", "edad", { unique: false });
+    registros.createIndex("extra", "extra", { unique: false });
 
     registros.oncompleted = function (event) {
         console.info('Almacen de datos creado');
     }
 };
 
-mostrarDatos("indexedDb"); // MUESTRO LOS DATOS
-// DATOS
+mostrarDatos("indexedDb");
+
 const nombre = document.getElementById("nombre");
 const edad = document.getElementById("edad");
-// GUARDAR
+const extra = document.getElementById("extra");
+
 const guardar = document.getElementById("guardar");
 const cargar = document.getElementById("cargarApi");
 const cargar5 = document.getElementById("cargarApi5");
 
 guardar.addEventListener("click", function () {
-    grabarDato(nombre.value, edad.value, "indexedDb");
+    grabarDato(nombre.value, edad.value, extra.value, "indexedDb");
 });
 
-cargar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
-    await cargarDatos("indexedDb"); // cargo una API
+cargar.addEventListener("click", async function (evento) {
+    await cargarDatos("indexedDb");
 });
-cargar5.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+cargar5.addEventListener("click", async function (evento) {
     for (let index = 0; index < 5; index++) {
-        await cargarDatos("indexedDb"); // cargo una API
+        await cargarDatos("indexedDb");
     }
 });

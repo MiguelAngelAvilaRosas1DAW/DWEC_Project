@@ -1,50 +1,49 @@
 'use strict';
 
-const actualizar = document.getElementById("guardar"); // referencio al bóton 'guardar'
+const actualizar = document.getElementById("guardar");
 
 function mostrarDatos(tipo) {
     console.log("Mostrando datos...");
-    const cuerpo = document.getElementById("cuerpo"); // referencia al objeto html dónde voy a mostrar los datos
+    const cuerpo = document.getElementById("cuerpo");
 
     switch (tipo) {
         case "cookie":
-            actualizar.addEventListener("click", function (evento) { // escucho la pulsación del botón 'guardar'
-                grabarDato(nombre.value, valor.value, "cookie"); // grabo una 'cookie'
+            actualizar.addEventListener("click", function (evento) {
+                grabarDato(nombre.value, valor.value, "cookie");
             });
-            if (document.cookie && document.cookie.length > 0) { // si existe y hay al menos 1 'cookie'
-                datosAcceso = document.cookie.split(";"); // creo un 'array' con todas las 'cookies'
+            if (document.cookie && document.cookie.length > 0) {
+                datosAcceso = document.cookie.split(";");
                 cuerpo.innerHTML = "Los datos almacenados son: <br />";
 
                 datosAcceso.forEach(function (datoAcceso) {
-                    let linea = document.createElement("tr"), // creo una fila
-                        campoNombre = document.createElement("td"), // creo una celda para el nombre
-                        campoValor = document.createElement("td"), // creo una celda para la clave
-                        campoBorrar = document.createElement("td"), // creo una celda para el botón 'borrar'
-                        campoActualizar = document.createElement("td"), // creo una celda para el botón 'actualizar'
+                    let linea = document.createElement("tr"),
+                        campoNombre = document.createElement("td"),
+                        campoValor = document.createElement("td"),
+                        campoBorrar = document.createElement("td"),
+                        campoActualizar = document.createElement("td"),
 
-                        botonBorrar = document.createElement("button"), // creo un botón type="button"
-                        imagenBorrar = document.createElement("img"), // creo una imagen
-                        botonActualizar = document.createElement("button"), // creo un botón type="button"
-                        imagenActualizar = document.createElement("img"); // creo una imagen
+                        botonBorrar = document.createElement("button"),
+                        imagenBorrar = document.createElement("img"),
+                        botonActualizar = document.createElement("button"),
+                        imagenActualizar = document.createElement("img");
 
-                    // DATOS
+
                     datoAcceso = datoAcceso.split("=");
-                    campoNombre.innerHTML = decodeURIComponent(datoAcceso[0]); // escribo el nombre contenido en el array
-                    campoValor.innerHTML = decodeURIComponent(datoAcceso[1]); // escribo el valor contenido en el array
-                    // BOTÓN BORRAR
+                    campoNombre.innerHTML = decodeURIComponent(datoAcceso[0]);
+                    campoValor.innerHTML = decodeURIComponent(datoAcceso[1]);
 
-                    botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+
+                    botonBorrar.addEventListener('click', function () {
                         borrarDato(datoAcceso[0], "cookie");
                     });
 
-                    imagenBorrar.src = "../../img/delete.svg"; // añado al botón una imagen
-                    imagenBorrar.width = "15"; // añado al botón los estilos
+                    imagenBorrar.src = "../../img/delete.svg";
+                    imagenBorrar.width = "15";
                     imagenBorrar.height = "15";
                     imagenBorrar.style = "vertical-align: middle";
 
-                    // BOTÓN ACTUALIZAR
 
-                    botonActualizar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                    botonActualizar.addEventListener('click', function () {
                         borrarDato(datoAcceso[0], "cookie");
                         datoAcceso[0] = document.getElementById("nombre").value;
                         console.log(datoAcceso[0]);
@@ -53,23 +52,22 @@ function mostrarDatos(tipo) {
                         actualizar.click();
                     });
 
-                    imagenActualizar.src = "../../img/recover.svg"; // añado al botón una imagen
-                    imagenActualizar.width = "15"; // añado al botón los estilos
+                    imagenActualizar.src = "../../img/recover.svg";
+                    imagenActualizar.width = "15";
                     imagenActualizar.height = "15";
                     imagenActualizar.style = "vertical-align: middle";
 
-                    // DOM
-                    botonBorrar.appendChild(imagenBorrar); // añado la imagen al botón
-                    campoBorrar.appendChild(botonBorrar); // añado el botón a la celda
-                    botonActualizar.appendChild(imagenActualizar); // añado la imagen al botón
-                    campoActualizar.appendChild(botonActualizar); // añado el botón a la celda
+                    botonBorrar.appendChild(imagenBorrar);
+                    campoBorrar.appendChild(botonBorrar);
+                    botonActualizar.appendChild(imagenActualizar);
+                    campoActualizar.appendChild(botonActualizar);
 
-                    linea.appendChild(campoNombre); // añado a la línea la celda con el nombre
-                    linea.appendChild(campoValor); // añado a la línea la celda con el valor
-                    linea.appendChild(campoBorrar); // añado a la línea la celda con el botón
-                    linea.appendChild(campoActualizar); // añado a la línea la celda con el botón
+                    linea.appendChild(campoNombre);
+                    linea.appendChild(campoValor);
+                    linea.appendChild(campoBorrar);
+                    linea.appendChild(campoActualizar);
 
-                    cuerpo.appendChild(linea); // añado al tbody 'cuerpo' la línea
+                    cuerpo.appendChild(linea);
                 });
             } else {
                 cuerpo.innerHTML = 'No existen datos almacenados';
@@ -79,40 +77,38 @@ function mostrarDatos(tipo) {
             break;
 
         case "localStorage":
-            if (localStorage.getItem("localAcceso") && JSON.parse(localStorage.getItem("localAcceso")).length > 0) { // si existe y hay al menos 1
-                datosAcceso = JSON.parse(localStorage.getItem("localAcceso")); // guardo el JSON de la variable localStorage 'acceso' en el array 'datosAcceso'
+            if (localStorage.getItem("localAcceso") && JSON.parse(localStorage.getItem("localAcceso")).length > 0) {
+                datosAcceso = JSON.parse(localStorage.getItem("localAcceso"));
                 cuerpo.innerHTML = "Los datos almacenados son: <br />";
 
                 datosAcceso.forEach(function (datoAcceso) {
-                    let linea = document.createElement("tr"), // creo una fila
-                        campoNombre = document.createElement("td"), // creo una celda para el nombre
-                        campoValor = document.createElement("td"), // creo una celda para la clave
-                        campoBorrar = document.createElement("td"), // creo una celda para el botón 'borrar'
-                        campoActualizar = document.createElement("td"), // creo una celda para el botón 'actualizar'
-                        botonBorrar = document.createElement("button"), // creo un botón
-                        imagenBorrar = document.createElement("img"), // creo una imagen
-                        botonActualizar = document.createElement("button"), // creo un botón type="button"
-                        imagenActualizar = document.createElement("img"); // creo una imagen
+                    let linea = document.createElement("tr"),
+                        campoNombre = document.createElement("td"),
+                        campoValor = document.createElement("td"),
+                        campoBorrar = document.createElement("td"),
+                        campoActualizar = document.createElement("td"),
+                        botonBorrar = document.createElement("button"),
+                        imagenBorrar = document.createElement("img"),
+                        botonActualizar = document.createElement("button"),
+                        imagenActualizar = document.createElement("img");
 
-                    // DATOS
 
-                    campoNombre.innerHTML = datoAcceso.nombre; // escribo el nombre contenido en el array
-                    campoValor.innerHTML = datoAcceso.valor; // escribo el valor contenida en el array
-                    // BOTÓN
-                    botonBorrar.className = "borrar"; // asigno el botón a una clase
-                    botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
-                        borrarDato(datoAcceso.nombre, "localStorage"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
+                    campoNombre.innerHTML = datoAcceso.nombre;
+                    campoValor.innerHTML = datoAcceso.valor;
+
+                    botonBorrar.className = "borrar";
+                    botonBorrar.addEventListener('click', function () {
+                        borrarDato(datoAcceso.nombre, "localStorage");
                         mostrarDatos("localStorage");
                     });
 
-                    imagenBorrar.src = "../../img/delete.svg"; // añado al botón una imagen
-                    imagenBorrar.width = "15"; // añado al botón los estilos
+                    imagenBorrar.src = "../../img/delete.svg";
+                    imagenBorrar.width = "15";
                     imagenBorrar.height = "15";
                     imagenBorrar.style = "vertical-align: middle";
 
-                    // BOTÓN ACTUALIZAR
 
-                    botonActualizar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                    botonActualizar.addEventListener('click', function () {
                         borrarDato(datoAcceso.nombre, "localStorage");
                         datoAcceso.nombre = document.getElementById("nombre").value;
                         console.log(datoAcceso[0]);
@@ -121,23 +117,23 @@ function mostrarDatos(tipo) {
                         actualizar.click();
                     });
 
-                    imagenActualizar.src = "../../img/recover.svg"; // añado al botón una imagen
-                    imagenActualizar.width = "15"; // añado al botón los estilos
+                    imagenActualizar.src = "../../img/recover.svg";
+                    imagenActualizar.width = "15";
                     imagenActualizar.height = "15";
                     imagenActualizar.style = "vertical-align: middle";
 
-                    // DOM
-                    botonBorrar.appendChild(imagenBorrar); // añado la imagen al botón
-                    campoBorrar.appendChild(botonBorrar); // añado el botón a la celda
-                    botonActualizar.appendChild(imagenActualizar); // añado la imagen al botón
-                    campoActualizar.appendChild(botonActualizar); // añado el botón a la celda
+                    
+                    botonBorrar.appendChild(imagenBorrar);
+                    campoBorrar.appendChild(botonBorrar);
+                    botonActualizar.appendChild(imagenActualizar);
+                    campoActualizar.appendChild(botonActualizar);
 
-                    linea.appendChild(campoNombre); // añado a la línea la celda con el nombre
-                    linea.appendChild(campoValor); // añado a la línea la celda con la clave
-                    linea.appendChild(campoBorrar); // añado a la línea la celda con el botón
-                    linea.appendChild(campoActualizar); // añado a la línea la celda con el botón
+                    linea.appendChild(campoNombre);
+                    linea.appendChild(campoValor);
+                    linea.appendChild(campoBorrar);
+                    linea.appendChild(campoActualizar);
 
-                    cuerpo.appendChild(linea); // añado al tbody 'cuerpo' la línea
+                    cuerpo.appendChild(linea);
                 });
             } else {
                 cuerpo.innerHTML = 'No existen datos almacenados';
@@ -158,55 +154,62 @@ function mostrarDatos(tipo) {
                     let registros = event.target.result;
                     console.log(registros);
                     for (let registro of registros) {
-                        let linea = document.createElement("tr"), // creo una fila
-                            campoNombre = document.createElement("td"), // creo una celda para el nombre
-                            campoClave = document.createElement("td"), // creo una celda para la clave
-                            campoBorrar = document.createElement("td"), // creo una celda para el botón 'borrar'
-                            campoActualizar = document.createElement("td"), // creo una celda para el botón 'actualizar'
+                        let linea = document.createElement("tr"),
+                            campoNombre = document.createElement("td"),
+                            campoClave = document.createElement("td"),
+                            campoExtra = document.createElement("td"),
+                            campoBorrar = document.createElement("td"),
+                            campoActualizar = document.createElement("td"),
                             
-                            botonBorrar = document.createElement("button"), // creo un botón
-                            imagenBorrar = document.createElement("img"), // creo una imagen
-                            botonActualizar = document.createElement("button"), // creo un botón type="button"
-                            imagenActualizar = document.createElement("img"); // creo una imagen
+                            imgExtra = document.createElement("img"),
+                            botonBorrar = document.createElement("button"),
+                            imagenBorrar = document.createElement("img"),
+                            botonActualizar = document.createElement("button"),
+                            imagenActualizar = document.createElement("img");
 
-                        campoNombre.innerHTML = registro.nombre; // escribo el nombre contenido en el array
-                        campoClave.innerHTML = registro.edad; // escribo la clave contenida en el array
+                        campoNombre.innerHTML = registro.nombre;
+                        campoClave.innerHTML = registro.edad;
+                        imgExtra.src = registro.extra;
+                        imgExtra.width = "50";
+                        imgExtra.height = "50";
+                        imgExtra.style = "vertical-align: middle";
 
-                        botonBorrar.className = "borrar"; // asigno el botón a una clase
-                        botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
-                            borrarDato(registro.id, "indexedDb"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
+                        botonBorrar.className = "borrar";
+                        botonBorrar.addEventListener('click', function () {
+                            borrarDato(registro.id, "indexedDb");
                         });
 
-                        // BOTÓN ACTUALIZAR
-
-                        botonActualizar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
+                        botonActualizar.addEventListener('click', function () {
                             borrarDato(registro.id, "indexedDb");
                             registro.nombre = document.getElementById("nombre").value;
                             registro.edad = document.getElementById("edad").value;
+                            registro.extra = document.getElementById("extra").value;
                             actualizar.click();
                         });
 
-                        imagenActualizar.src = "../../img/recover.svg"; // añado al botón una imagen
-                        imagenActualizar.width = "15"; // añado al botón los estilos
+                        imagenActualizar.src = "../../img/recover.svg";
+                        imagenActualizar.width = "15";
                         imagenActualizar.height = "15";
                         imagenActualizar.style = "vertical-align: middle";
 
-                        imagenBorrar.src = "../../img/delete.svg"; // añado al botón una imagen
-                        imagenBorrar.width = "15"; // añado al botón los estilos
+                        imagenBorrar.src = "../../img/delete.svg";
+                        imagenBorrar.width = "15";
                         imagenBorrar.height = "15";
                         imagenBorrar.style = "vertical-align: middle";
 
-                        botonBorrar.appendChild(imagenBorrar); // añado la imagen al botón
-                        campoBorrar.appendChild(botonBorrar); // añado el botón a la celda
-                        botonActualizar.appendChild(imagenActualizar); // añado la imagen al botón
-                        campoActualizar.appendChild(botonActualizar); // añado el botón a la celda
+                        campoExtra.appendChild(imgExtra);
+                        botonBorrar.appendChild(imagenBorrar);
+                        campoBorrar.appendChild(botonBorrar);
+                        botonActualizar.appendChild(imagenActualizar);
+                        campoActualizar.appendChild(botonActualizar);
 
-                        linea.appendChild(campoNombre); // añado a la línea la celda con el nombre
-                        linea.appendChild(campoClave); // añado a la línea la celda con la clave
-                        linea.appendChild(campoBorrar); // añado a la línea la celda con el botón
-                        linea.appendChild(campoActualizar); // añado a la línea la celda con el botón
+                        linea.appendChild(campoNombre);
+                        linea.appendChild(campoClave);
+                        linea.appendChild(campoExtra);
+                        linea.appendChild(campoBorrar);
+                        linea.appendChild(campoActualizar);
 
-                        cuerpo.appendChild(linea); // añado al tbody 'cuerpo' la línea
+                        cuerpo.appendChild(linea);
                     }
                 }
             };

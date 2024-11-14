@@ -2,26 +2,26 @@
 
 navbar_functions("../../");
 
-let datosAcceso = []; // 'array' dónde almaceno los valos de nombre y clave
+let datosAcceso = [];
 
-if (navigator.cookieEnabled == true) { // comprueba que el navegador sea compatible
-    const nombre = document.getElementById("nombre"); // accedo al valor del input para el nombre
-    const valor = document.getElementById("valor"); // accedo al valor del input para la clave
+if (navigator.cookieEnabled == true) {
+    const nombre = document.getElementById("nombre");
+    const valor = document.getElementById("valor");
 
     const grabar = document.getElementById("guardar");
     const cargar = document.getElementById("cargarApi");
     const cargar5 = document.getElementById("cargarApi5");
 
-    mostrarDatos(); // muestro el contenido de las 'cookies'
-    grabar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
-        await grabarDato(nombre.value, valor.value, "cookie"); // grabo una 'cookie'
+    mostrarDatos();
+    grabar.addEventListener("click", async function (evento) {
+        await grabarDato(nombre.value, valor.value, "", "cookie");
     });
-    cargar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
-        await cargarDatos("cookie"); // cargo una API
+    cargar.addEventListener("click", async function (evento) {
+        await cargarDatos("cookie");
     });
-    cargar5.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+    cargar5.addEventListener("click", async function (evento) {
         for (let index = 0; index < 5; index++) {
-            await cargarDatos("cookie"); // cargo una API
+            await cargarDatos("cookie");
         }
     });
 

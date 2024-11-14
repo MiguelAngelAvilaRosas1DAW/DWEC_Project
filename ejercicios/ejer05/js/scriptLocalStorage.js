@@ -12,15 +12,15 @@ if (window.localStorage) {
     const cargar5 = document.getElementById("cargarApi5");
 
     guardar.addEventListener("click", function () {
-        grabarDato(nombre.value, valor.value, "localStorage");
+        grabarDato(nombre.value, valor.value, "", "localStorage");
     });
 
-    cargar.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
-        await cargarDatos("localStorage"); // cargo una API
+    cargar.addEventListener("click", async function (evento) {
+        await cargarDatos("localStorage");
     });
-    cargar5.addEventListener("click", async function (evento) { // escucho la pulsación del botón 'guardar'
+    cargar5.addEventListener("click", async function (evento) {
         for (let index = 0; index < 5; index++) {
-            await cargarDatos("localStorage"); // cargo una API
+            await cargarDatos("localStorage");
         }
     });
 } else {
