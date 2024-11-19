@@ -1,0 +1,57 @@
+/********************************************/
+/* Stylesheets for authors                  */
+/* Author: Miguel Ángel Ávila Rosas         */
+/* Version: 0.1                             */
+/* Created on: September 19, 2024           */
+/* Updated on: September 19, 2024           */
+/********************************************/
+
+/**********************************MAIN CONTENT**************************************/
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    border: 1px solid rgb(211, 211, 211, 0.5);
+    box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+    font-family: sans-serif;
+    margin: 2vh;
+
+}
+
+.boxContent {
+    border: 2.5px solid black;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    text-align: center;
+    padding-left: 2vh;
+
+    & input[type="button"] {
+        width: 200px;
+        height: 50px;
+        text-align: center;
+        border: 2px solid rgb(0, 0, 0);
+        margin: 0 0 0 25px;
+        background-color: #ffffff;
+
+        &:hover{
+            background-color: #bababa;
+        }
+    }
+
+}
+
+.elemento {
+    border: 2px solid #000;
+    width: 150px;
+    margin: auto;
+    margin-top: 7.5px;
+    border-radius: 7px;
+}
+
+
+/***************************************MEDIA QUERIES (TABLET AND MOBILE)***************************************/
+
+/*MOVILE*/
+@media only screen and (width<=650px) {}

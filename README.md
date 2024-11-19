@@ -1,4 +1,8 @@
-<h1>INTRODUCIÓN</h1>
+<h1>DWEC_Project</h1>
+<h2>Por: Miguel Ángel Ávila Rosas</h2>
+<h2>2ºDAW</h2>
+
+<h2>INTRODUCIÓN</h2>
 
 En este ejercicio forzare al usuario a logearse dentro de mi pagina, utilizando para ello la función prompt, que permitira al usuario introducir un nombre y contraseña que, de ser correcto, le permitira el acceso dentro de la pagina, guardando el login en una cookie la cual se utilizara para mantener logueado al usuario hasta la fecha de expiración de la cookie. En el apartado de JavaScript veremos el funcionamiento de estas reglas.
 
@@ -6,9 +10,9 @@ Username: miguel
 
 Password: elmasalto
 
-<h1>HTML</h1>
+<h2>HTML</h2>
 
-<h2>Pagina principal (index)</h2>
+<h3>Pagina principal (index)</h3>
 
 ·HEADER: Indica el nombre de la asignatura, ademas del nombre del ejercicio que se esta realizando.
 
@@ -20,9 +24,9 @@ Password: elmasalto
 
 ·FOOTER:En este pie de pagina se indica el creador de la pagina, ademas de una foto del mismo, para que no haya confusión.
 
-<h2>Ejercicio 1 (Mini-Calculadora)</h2>
+<h3>Ejercicio 1 (Calculadora)</h3>
 
-·MAIN CONTENT: Es una mini calculadora, la cual recibe dos valores introducidos por el usuario atraves de 2 campos, pudiendo realizar diferentes funciones segun el boton pulsado:
+·MAIN CONTENT: Es una alculadora grafica, que nos permitira hacer todo tipo de operaciones escrbiendolas a mano o utilizando el teclado grafico. Se nos permitira realizar las siguientes operaciones:
 
   ·SUMA (+): Suma los dos valores introducidos.
 
@@ -36,13 +40,13 @@ Password: elmasalto
 
   ·DECIMAL(._): Saca la parte decimal del resultado que haya dado la operación.
 
-  ·FACTORIAL(!): Saca el factorial de los dos valores.
+  ·RAIZ(√): Saca la raiz del primer valor.
 
   ·RESTO(%): Te da el resto de la division de los dos valores.
 
-Tras realizar la operación, el resultado se imprime por pantalla en le bloque inferior.
+Tras realizar la operación, el resultado se imprime por pantalla en le bloque superior.
 
-<h2>Ejercicio 2 (Conversor de bases)</h2>
+<h3>Ejercicio 2 (Conversor de bases)</h3>
 
 ·MAIN CONTENT: Es un convertidor de bases, recibe un valor introducido por el usuario y lo convierte en:
 
@@ -56,7 +60,7 @@ Tras realizar la operación, el resultado se imprime por pantalla en le bloque i
 
 Tras realizar la operación, el resultado se imprime por pantalla en le bloque inferior.
 
-<h2>Ejercicio 3 (Transformador del texto)</h2>
+<h3>Ejercicio 3 (Transformador del texto)</h3>
 
 ·MAIN CONTENT: Es un transformador de texto que te permitira cambiar el texto que escribas a mayusculas y minusclas, con diferentes opciones disponibles:
 
@@ -91,7 +95,7 @@ Ademas tambien se incluyen otras funciones adicionales como:
 
 ·Lento: Aumenta el tiempo de cambio de la funcion random por 0.5 segundos.
 
-<h2>Ejercicio 4 (Generador de Matrices)</h2>
+<h3>Ejercicio 4 (Generador de Matrices)</h3>
 
 ·MAIN CONTENT: Genera matrices a partir de unas dimensiones indicadas por el usuario, puediendo sumar, restar y multiplicar estas. Ademas cuenta tambien con un generador aleatorio de valores para indicar en los inputs del usuario. Otras de las opciones añadidas es la posibilidad de indicar el rango de numeros con el que se crearan las matrices.
 
@@ -109,13 +113,25 @@ Ademas es aprueba de errores, dando alertas en caso de que el usuario no introdu
 
 En caso de que llege a poner decimales, el progrmas redondeara el input y mostrara el resultado correctamente.
 
-<h2>Ejercicio 5 (Almacenamientos)</h2>
+<h3>Ejercicio 5 (Almacenamientos)</h3>
 
 ·MAIN CONTENT: Este apartado permitira al usuario guardar claves y valores de tres formas distintas: Por cookies (cookies.html), por localStorage (localStorage.html) y por IndexedDB (indexedDB.html). Cada una te dara la opción de borrar y actualizar los valores de los datos, ademas de una funcion adicional para cargar de una API valores aleatorios los cuales crearan nuevos registros.
 
-<h1>JAVASCRIPT</h1>
+<h3>Ejercicio 6 (POO con pilas, colas y filas)</h3>
 
-<h3>login</h3>
+·MAIN CONTENT: En este apartado interactivo, podremos utilizar las funcionalidades de la programación orientada a objetos (POO), para poder realizar una pila con ropa para lavar, una cola con coches que reprar y una lista con tareas que hacer.
+
+·Pila: En la pila podremos utilizar las opciones indicadas para meter o sacar ropa de pila. Al sacarse, la primera prenda que saldra sera la ultima introducida.
+
+·Cola: En la pila podremos utilizar las opciones indicadas para meter o sacar coches del taller. Al sacarse, el primer coche que saldra sera el primero que se introdujera.
+
+·Lista: En la lista podremos utilizar las opciones indicadas para introducir y quitar tareas de la lista. Las tareas normales se añadiran y quitaran aleatoriamente de la lista. Las tareas con prioridad añadiran aleatoriamente a la lista, pero se quitaran empezando por la primera introducida.
+
+Añadir que en este apartado se utilizan MODULOS, que haran que el todos los JS solo se ejecuten cuando sea necesario.
+
+<h2>JAVASCRIPT</h2>
+
+<h4>login</h4>
 
 ·Guarda el nombre de usuario y contraseña necesario para entrar:
     const storedUsername = "miguel";
@@ -203,7 +219,7 @@ mensaje de bienvenida y se guardara, con la funcion setLocalStorage(), la sesion
     location.reload();
   });
 
-<h3>mainFunctions</h3>
+<h4>mainFunctions</h4>
 
 Crea constantes de diferentes elementos dentro de la pagina principal -->
 
@@ -231,7 +247,7 @@ function navbar_functions(link) {
             case "miniCalculator":
                 mainContent.innerHTML = `
                 <div class="card">
-                    <h2>Mini Calculadora</h2>
+                    <h3>Mini Calculadora</h3>
                     <p>Una calculadora para realizar diferentes operaciones aritmaticas.</p>
                     <a href="${link}/ejercicios/ejer01/index.html">Ir</a>
                 </div>`;
@@ -239,7 +255,7 @@ function navbar_functions(link) {
             case "converter":
                 mainContent.innerHTML = `
                 <div class="card">
-                    <h2>Conversor de bases</h2>
+                    <h3>Conversor de bases</h3>
                     <p>Convierte un valor que le pases a binario, octal o hexadecimal.</p>
                     <a href="${link}/ejercicios/ejer02/index.html">Ir</a>
                 </div>`;
@@ -259,12 +275,12 @@ exit.addEventListener("click", function () {
         }
 });
 
-<h3>navbarFunctions</h3>
+<h4>navbarFunctions</h4>
 Esta funcion sirve principalmente para llamar a la función de navbar_functions, asignandole los valores necesarios para que se pueda ejecutar de manera independiente en la pagina principal.
 
-<h3>navbarFunctions</h3>
+<h4>navbarFunctions</h4>
 
-<h3>calculadora</h3>
+<h4>calculadora</h4>
 
 ·Funciones:
 
@@ -284,7 +300,7 @@ Cuando el usurio pulse algun boton para una operación, este llamara al función
     calculator("(operacion)");
 });
 
-<h3>conversorDeBases</h3>
+<h4>conversorDeBases</h4>
 
 ·Funciones:
 
@@ -309,7 +325,7 @@ Coge la id del boton y el texto de resultado que se muestra -->
 
 Cuando se presiona el boton, el click se registra y llama a la función dentro de funciones, pasandole el texto que tiene que remplazar.
 
-<h3>transformador</h3>
+<h4>transformador</h4>
 
 Con esta función declaramos un nuevo texto que sustituira a la area de texto principal, en este, se cambiara la primera letra de 
 cada palabra por su versión mayuscula o minuscula. -->
@@ -495,7 +511,7 @@ slow.addEventListener("click", function () {
     console.log("Tiempo aumentado a: " + time);
 });
 
-<h3>deleteIndexedDB</h3>
+<h4>deleteIndexedDB</h4>
 
 Borra el valor de la clave en IndexedDB -->
 
@@ -514,7 +530,7 @@ async function deleteIndexedDB(name) {
     };
 }
 
-<h3>getIndexedDB</h3>
+<h4>getIndexedDB</h4>
 
 Obtiene el valor de una clave especifica en IndexedDB -->
 
@@ -542,7 +558,7 @@ async function getIndexedDB(name) {
     });
 }
 
-<h3>indexedDB</h3>
+<h4>indexedDB</h4>
 
 Abre la base de datos de IndexedDB -->
 
@@ -570,7 +586,7 @@ async function openDatabase() {
     });
 }
 
-<h3>setIndexedDB</h3>
+<h4>setIndexedDB</h4>
 
 Crean una nueva clave en IndexedDB -->
 
@@ -589,7 +605,7 @@ async function setIndexedDB(nombre, value) {
     };
 }
 
-<h3>crearMatriz</h3>
+<h4>crearMatriz</h4>
 
 Crea una matriz vidimensional numerica vacia -->
 
@@ -612,7 +628,7 @@ function crearMatriz(matrizDimensions) {
     return matriz;
 }
 
-<h3>rellenarMatriz</h3>
+<h4>rellenarMatriz</h4>
 
 Rellena todas las columnas de la matriz con numeros aleatorios con un rango entre 2 valores -->
 
@@ -636,7 +652,7 @@ function rellenarMatriz(matriz, lowerRange, superiorRange) {
     return matriz;
 }
 
-<h3>mostrarMatriz</h3>
+<h4>mostrarMatriz</h4>
 
 Crea una tabla, creando filas y columnas donde se almacenaran todos los datos de un array bidimensional, que dara lugar a una tabla -->
 
@@ -657,7 +673,7 @@ function mostrarMatriz(matriz) {
     return tabla;
 }
 
-<h3>ecuacionesMatrices</h3>
+<h4>ecuacionesMatrices</h4>
 
 Realiza operaciones con matrices y devuelve el resultado en una nueva matriz -->
 
@@ -692,7 +708,7 @@ function ecuacionesMatrices(matrizA, matrizB, matrizResultado, operador) {
 
 }
 
-<h3>generadorMatrices</h3>
+<h4>generadorMatrices</h4>
 
 Genera valores aleatorios en los tres inputs utilizando un rango entre dos valores -->
 
@@ -727,7 +743,7 @@ generarMatrices.addEventListener("click", function () {
 
 });
 
-<h3>scriptCookies y scriptLocalStorage</h3>
+<h4>scriptCookies y scriptLocalStorage</h4>
 
 Estos scripts registran el contenido de su html y generan funciones para cada boton de interaccion del usuario, creando ademas un array para guardar el contenido que se almacene -->
 
@@ -758,7 +774,7 @@ if (navigator.cookieEnabled == true) { // comprueba que el navegador sea compati
     alert("El uso de cookies está desactivado");
 }
 
-<h3>scriptIndexedDb</h3>
+<h4>scriptIndexedDb</h4>
 
 IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base de datos utilizando los comandos necesarios de la misma para funcionar.
 
@@ -811,11 +827,11 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
         }
     });
 
-<h3>grabarDato</h3>
+<h4>grabarDato</h4>
 
     Esta funcion utiliza un switch para elegir entre la grabación de los datos por IndexedDb, localStorage o cookies, utilizando cada una sus funcionalidades para ello:
 
-<h4>Cookies (Creando una nueva cookie con sus parametros)</h4>
+<h5>Cookies (Creando una nueva cookie con sus parametros)</h5>
 
             let caducidadCookie = 1 * 60 * 1000; // caducidad por defecto, 1 minutos
 
@@ -830,7 +846,7 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
             mostrarDatos("cookie");
             break;
 
-<h4>LocalStorage (Introduciendo nuevos parametros al array)</h4>
+<h5>LocalStorage (Introduciendo nuevos parametros al array)</h5>
 
             datosAcceso.push({
                 nombre: name,
@@ -842,7 +858,7 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
             mostrarDatos("localStorage");
             break;
 
-<h4>IndexedDB (Abriendo la base de datos e introduciendo nuevos valores a la misma)</h4>
+<h5>IndexedDB (Abriendo la base de datos e introduciendo nuevos valores a la misma)</h5>
 
             solicitudDB = indexedDB.open(nombreBD, versionBD);
             solicitudDB.onerror = function (event) {
@@ -856,11 +872,11 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
             };
             break;
 
-<h3>borrarDato</h3>
+<h4>borrarDato</h4>
 
     Esta funcion utiliza un switch para elegir entre el borrado de los datos por IndexedDb, localStorage o cookies, utilizando cada una sus funcionalidades para ello:
 
-<h4>Cookies (Cambiando la caducidad de la cookie para que deje de existir)</h4>
+<h5>Cookies (Cambiando la caducidad de la cookie para que deje de existir)</h5>
 
             let caducidadCookie = 1 * 60 * 1000;
 
@@ -874,7 +890,7 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
 
             mostrarDatos("cookie");
 
-<h4>LocalStorage (Creando un nuevo array con los nuevos datos, sustituyendo a los antiguos)</h4>
+<h5>LocalStorage (Creando un nuevo array con los nuevos datos, sustituyendo a los antiguos)</h5>
 
     let newDatosAcceso = [];
             let cont = 0;
@@ -891,7 +907,7 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
             localStorage.setItem("localAcceso", JSON.stringify(datosAcceso));
             break;
 
-<h4>IndexedDB (Abriendo la base de datos y utilizando el parametro .delete para borrar el dato especifico)</h4>
+<h5>IndexedDB (Abriendo la base de datos y utilizando el parametro .delete para borrar el dato especifico)</h5>
 
     solicitudDB = indexedDB.open(nombreBD, versionBD);
             solicitudDB.onerror = function (event) {
@@ -904,7 +920,7 @@ IndexedDB hace lo mismo que el script anterior, pero creando y abriendo una base
             };
             mostrarDatos("indexedDb");
 
-<h3>cargarDatos</h3>
+<h4>cargarDatos</h4>
 
 Carga una API con valores aleatorios y graba los resultados con Cookies, localStorage o IndexedDB dependiendo del parametro que se le mande -->
 
@@ -950,7 +966,7 @@ const url = 'https://random-words5.p.rapidapi.com/getMultipleRandom?count=5';
         console.error(error);
     }
 
-<h3>mostrarDatos</h3>
+<h4>mostrarDatos</h4>
 
 Este script se divide en tres secciones separadas por un switch, cada caso se realizara en caso de que se quiera realizar con cookies, localStorage o indexedDB.
 
@@ -969,7 +985,7 @@ En todos los casos se crea una tabla con una seccion para la clave y otra para e
 
 Y dependiendo de cada caso, tendra una forma distinta de borrar o actualizar la cookie, sin embargo el codigo es muy similar, excepto por indexedDB, que se mandan los parametros de forma distinta en el borrar y actualizar.
 
-<h4>Cookies y localStorage</h4>
+<h5>Cookies y localStorage</h5>
 
 botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
                         borrarDato(datoAcceso.nombre, "localStorage"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
@@ -985,7 +1001,7 @@ botonActualizar.addEventListener('click', function () { // añado al botón un e
                         actualizar.click();
                     });
 
-<h4>IndexedDB</h4>
+<h5>IndexedDB</h5>
 
 botonBorrar.addEventListener('click', function () { // añado al botón un evento de escucha (listener)
                             borrarDato(registro.id, "indexedDb"); // la función 'forEach' tiene una variable 'posición', la cuál uso para saber el elemento que he de borrar
@@ -997,3 +1013,121 @@ botonActualizar.addEventListener('click', function () { // añado al botón un e
                             registro.edad = document.getElementById("edad").value;
                             actualizar.click();
                         });
+
+<h4>main (pila, cola y lista)</h4>
+
+El conjunto de estos scripts tienen una funcion similar, todos ellos añaden un evente para los botones de sus distintivos apartados, y ademas crean un array con el contenido a mostrar y una cantidad de objetos totales a mostrar por pantalla.
+
+Por ejemplo cola:
+
+import { Cola } from './Cola.js';
+import { paraReparar } from './paraReparar.js';
+import { reparar } from './reparar.js';
+
+export const MATRICULAS = [
+    '🚗 12345-ABC',
+    '🛵 23456-BCD',
+    '🛻 34567-CDE',
+    '🚚 45678-DEF',
+    '🛵 56789-EFG',
+    '🚗 67890-FGH',
+    '🛻 78901-GHI',
+    '🚚 89012-HIJ',
+    '🚗 90123-IJK',
+    '🛵 98765-JKL'];
+export const taller = new Cola();
+export const AFORO_TALLER = 10;
+export let ultCoche = "";
+
+document.getElementById("llegada").addEventListener("click", paraReparar);
+document.getElementById("atender").addEventListener("click", reparar);
+
+<h4>paraHacer, paraLavar y paraReparar</h4>
+
+De nuevo, estos tres scripts que cumplen con un proposito similar, el de añadir contenido aleatorio a campos especificos indicados por su main.
+
+Por ejemplo paraHacer:
+
+import { generaN } from '../aleatorio.js';
+import { MAX_TAREAS, TAREAS_ALMACENADAS, toDoO } from './mainLista.js';
+
+export function paraHacer() {
+    let tarea = generaN(0, 9);
+    let posicion = generaN(0, toDoO.tamano());
+    console.log("Añadiendo tarea...");
+
+    if (toDoO.tamano() == MAX_TAREAS) {
+        document.getElementById("resLista").innerHTML = "DEBERÍAS EMPEZAR A HACER LAS TAREAS";;
+    } else {
+        toDoO.enlistar(TAREAS_ALMACENADAS[tarea], posicion);
+        console.log(toDoO.devolver());
+        document.getElementById("resLista").innerHTML = "";
+        toDoO.devolver().forEach(tareaActual => {
+            document.getElementById("resLista").innerHTML += "<p class=\"elemento\">" + tareaActual + "</p>";
+        });
+    }
+}
+
+<h4>hacer, lavar y reparar</h4>
+
+De nuevo, estos tres scripts que cumplen con un proposito similar, el de remover contenido de distinta manera dependiendo del tipo de almacenamiento.
+
+· En lista remueve aleatoriamente o el primero en caso de que tenga prioridad:
+
+export function hacer() {
+    let posicion = generaN(0, toDoO.tamano());
+
+    if (toDoO.vacio()) {
+        document.getElementById("resLista").innerHTML = "NO HAY MÁS TAREAS QUE HACER";
+    } else {
+        toDoO.desenlistar(posicion);
+        console.log(toDoO.devolver());
+        document.getElementById("resLista").innerHTML = "";
+        toDoO.devolver().forEach(tarea => {
+            document.getElementById("resLista").innerHTML += "<p class=\"elemento\">" + tarea + "</p>";
+        });
+    }
+}
+
+export function hacerPrior() {
+    if (toDoPrior.vacio()) {
+        document.getElementById("resListaPrior").innerHTML = "NO HAY MÁS TAREAS QUE HACER";
+    } else {
+        toDoPrior.desenlistar(toDoPrior.posicionMayor().posicion);
+        console.log(toDoPrior.devolver());
+        document.getElementById("resListaPrior").innerHTML = "";
+        toDoPrior.devolver().forEach(tarea => {
+            document.getElementById("resListaPrior").innerHTML += "<p class=\"elemento\">" + tarea + "</p>";
+        });
+    }
+}
+
+· En cola remueve el primer elemento que entro:
+
+export function reparar() {
+    if (taller.vacio()) {
+        document.getElementById("resCola").innerHTML = "NO HAY MÁS COCHES QUE REPARAR";
+    } else {
+        taller.desencolar();
+        console.log(taller.devolver());
+        document.getElementById("resCola").innerHTML = "";
+        taller.devolver().forEach(prenda => {
+            document.getElementById("resCola").innerHTML +=  prenda + " ";
+        });
+    }
+}
+
+· En pila remueve el ultimo elemento que entro:
+
+export function lavar() {
+    if (cesto.vacio()) {
+        document.getElementById("resPila").innerHTML = "NO HAY MÁS ROPA QUE LAVAR";
+    } else {
+        cesto.desapilar();
+        console.log(cesto.devolver());
+        document.getElementById("resPila").innerHTML = "";
+        cesto.devolver().forEach(prenda => {
+            document.getElementById("resPila").innerHTML += "<p class=\"elemento\">" + prenda + "</p>";
+        });
+    }
+}

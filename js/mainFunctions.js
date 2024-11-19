@@ -28,10 +28,10 @@ function navbar_functions(link) {
 
             const selectedOption = this.value;
             switch (selectedOption) {
-                case "miniCalculator":
+                case "Calculator":
                     mainContent.innerHTML = `
                     <div class="card">
-                        <h2>Mini Calculadora</h2> 
+                        <h2>Calculadora</h2> 
                         <p>Una calculadora para realizar diferentes operaciones aritmaticas.</p>
                         <a href="${link}/ejercicios/ejer01/index.html">Ir</a>
                     </div>`;
@@ -83,6 +83,30 @@ function navbar_functions(link) {
                                 <p>Almacena una tabla con datos de una API utilizando indexedDB</p>
                                 <a href="${link}/ejercicios/ejer05/indexedDB.html">Ir</a>
                             </div>`;
+                    break;
+                case "pila":
+                    mainContent.innerHTML = `
+                                <div class="card">
+                                    <h2>Pila</h2>
+                                    <p>Introduce y borra datos en una pila de ropa</p>
+                                    <a href="${link}/ejercicios/ejer06/pila.html">Ir</a>
+                                </div>`;
+                    break;
+                case "cola":
+                    mainContent.innerHTML = `
+                                    <div class="card">
+                                        <h2>Cola</h2>
+                                        <p>Introduce y borra datos en una cola de coches</p>
+                                        <a href="${link}/ejercicios/ejer06/cola.html">Ir</a>
+                                    </div>`;
+                    break;
+                case "lista":
+                    mainContent.innerHTML = `
+                                        <div class="card">
+                                            <h2>Lista</h2>
+                                            <p>Introduce y borra datos en una lista, quitando bojetos de forma aleatoria e indicando algunos con prioridad</p>
+                                            <a href="${link}/ejercicios/ejer06/lista.html">Ir</a>
+                                        </div>`;
                     break;
             }
         });

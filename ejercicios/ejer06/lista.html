@@ -10,15 +10,18 @@
     <link href="../../css/styles.css" rel="stylesheet" type="text/css" />
     <link href="./css/styles.css" rel="stylesheet" type="text/css" />
 
-    <script src="../../js/indexedDB.js" type="text/javascript"></script>
-    <script defer src="../../js/deleteIndexedDB.js" type="text/javascript"></script>
-    <script defer src="./js/actualizarDatos.js" type="text/javascript"></script>
-    <script defer src="./js/borrarDato.js" type="text/javascript"></script>
-    <script defer src="./js/grabarDato.js" type="text/javascript"></script>
-    <script defer src="./js/mostrarDatos.js" type="text/javascript"></script>
-    <script defer src="./js/cargarDatos.js" type="text/javascript"></script>
+    <script defer src="../../js/indexedDB.js" type="text/javascript"></script>
     <script defer src="../../js/mainFunctions.js" type="text/javascript"></script>
-    <script defer src="./js/scriptCookies.js" type="text/javascript"></script>
+    <script defer src="./js/navbar.js" type="text/javascript"></script>
+    <script src="./js/aleatorio.js" type="module"></script>
+    <script src="./js/lista/hacer.js" type="module"></script>
+    <script src="./js/lista/paraHacer.js" type="module"></script>
+    <script src="./js/lista/hacerPrior.js" type="module"></script>
+    <script src="./js/lista/paraHacerPrior.js" type="module"></script>
+    <script src="./js/devolver.js" type="module"></script>
+    <script src="./js/mostrar.js" type="module"></script>
+    <script src="./js/lista/Lista.js" type="module"></script>
+    <script src="./js/lista/mainLista.js" type="module"></script>
 </head>
 
 <body>
@@ -26,7 +29,7 @@
     <!--HEADER-->
     <div id="header">
         <h1>Desarrollo WEB en entorno cliente</h1>
-        <h2>Almacenamiento con cookies</h2>
+        <h2>POO con listas</h2>
     </div>
 
     <!--NAVIGATION BAR-->
@@ -70,48 +73,31 @@
     <div id="mainContent">
         <div class="card">
             <div class="boxContent">
-                <h1>Almacenamiento con cookies</h1>
-                <table id="tabla" class="filas">
-                    <thead>
-                        <tr>
-                            <th><label name="labelNombre" for="nombre">Introduce un nombre</label></th>
-                            <th><label name="labelValor" for="valor">Introduce un valor</label></th>
-                        </tr>
-                        <tr>
-                            <th>
-                                <input type="text" id="nombre" class="control" name="nombre" size="20"
-                                    placeholder="Escribe un nombre..." required />
-                            </th>
-                            <th>
-                                <input type="text" id="valor" class="control" name="valor" size="20"
-                                    placeholder="Escribe un valor..." required />
-                            </th>
-                            <th>
-                                <button type="submit" id="guardar"> <div class="buttonText">Guardar</div>
-                                    <img src="../../img/save.svg" id="guardar" alt="Grabar dato"
-                                        style="vertical-align: middle" />
-                                </button>
-                                <button type="submit" class="api" id="cargarApi"> <div class="buttonText">Cargar 1 API</div>
-                                    <img src="../../img/uploadarrow_87531.png" alt="Cargar API"
-                                        style="vertical-align: middle" />
-                                </button>
-                                <button type="submit" class="api" id="cargarApi5"> <div class="buttonText">Cargar 5 API's</div>
-                                    <img src="../../img/uploadarrow_87531.png" alt="Cargar API x5"
-                                        style="vertical-align: middle" />
-                                        <div class="buttonMiniText">x5</div>
-                                </button>
-                            </th>
-                            <th>
-                                
-                            </th>
-                            <th>
-                                
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpo">
-                    </tbody>
-                </table>
+                <!-- EJERCICIO Lista -->
+                <div>
+                    <h1>Lista de tareas</h1>
+                    <input type='button' id="anadir" value="📘 Añadir tarea" />
+                    <input type='button' id="eliminar" value="🧑‍🔧 Eliminar tarea" />
+                    <input type='button' id="anadirPrior" value="📕 Añadir tarea con prioridad" />
+                    <input type='button' id="eliminarPrior" value="🧑‍🔧 Eliminar tarea con prioridad" />
+                </div>
+                <div>
+                    <p><strong>Tareas totales</strong></p>
+                    <div class="grid2">
+                        <div>
+                            <label>
+                                <pre>Tareas: </pre>
+                            </label>
+                            <div id="resLista"></div>
+                        </div>
+                        <div>
+                            <label>
+                                <pre>Tareas Obligatorias: </pre>
+                            </label>
+                            <p id="resListaPrior"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a href="../../mainPage.html">Pagina principal</a>
         </div>
