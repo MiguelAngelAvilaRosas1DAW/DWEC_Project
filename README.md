@@ -1,6 +1,5 @@
 <h1>DWEC_Project</h1>
-<h2>Por: Miguel Ángel Ávila Rosas</h2>
-<h2>2ºDAW</h2>
+<h2>Por: Miguel Ángel Ávila Rosas 2ºDAW</h2>
 
 <h2>INTRODUCIÓN</h2>
 
